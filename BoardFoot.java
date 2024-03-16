@@ -1,11 +1,12 @@
 /*
- * will then calculate the length, so that the result
- * is exactly 1 board foot and returns that value.
- *
- * @author  Emmanuel.FN
- * @version 1.0
- * @since   2024-03-14
- */
+* This program checks how long wood needs to be one board foot long
+* will then calculate the length, so that the result
+* is exactly 1 board foot and returns that value.
+*
+* @author  Emmanuel.FN
+* @version 1.0
+* @since   2024-03-14
+*/
 
 import java.util.Scanner;
 
@@ -13,7 +14,6 @@ import java.util.Scanner;
 * This is the standard "BoardFoot" program.
 */
 final class BoardFoot {
-
     /**
     * Prevent instantiation.
     * Throw an exception IllegalStateException.
@@ -26,18 +26,17 @@ final class BoardFoot {
         throw new IllegalStateException("Cannot be instantiated");
     }
 
-    /**
+     /**
     * Calculates the length of a board foot based on its width and height.
     *
     * @param boardWidthFloat  The width of the board in inches.
     * @param boardHeightFloat The height of the board in inches.
     * @return The length of the board foot.
     */
-    public static float calculateBoardFoot(
-        float boardWidthFloat, float boardHeightFloat) {
-        final int boardFoot = 144;
-        final float boardLength = boardFoot / (boardWidthFloat * boardHeightFloat);
 
+    static float checkBoardLength(float boardWidthFloat, float boardHeightFloat) {
+        final float boardFoot = 144;
+        final float boardLength = boardFoot / (boardWidthFloat * boardHeightFloat);
         return boardLength;
     }
 
@@ -46,44 +45,41 @@ final class BoardFoot {
     *
     * @param args No args will be used
     */
-    public static void main(String[] args) {
-        // variables
-        final Scanner scanner = new Scanner(System.in);
-        final String invalidInput = "Invalid input.";
+    public static void main(final String[] args) {
+        // Generate random integer
+        final int randomInt = 1 + (int) (Math.random() * ((6 - 1) + 1));
 
-        // input
-        System.out.print("Enter the width(inches): ");
-        final String boardWidthString = scanner.nextLine().trim();
-        System.out.print("Enter the height(inches): ");
-        final String boardHeightString = scanner.nextLine().trim();
+        // Scanners
+        final Scanner input = new Scanner(System.in);
+        final Scanner input2 = new Scanner(System.in);
 
-        // error check
+        // Check if input is valid
         try {
-            if (boardWidthString.isEmpty() || boardHeightString.isEmpty()) {
-                System.out.println(invalidInput);
+            System.out.print("Enter the width(inches): ");
+            final float width = Float.parseFloat(input.nextLine());
+            System.out.print("Enter the height(inches): ");
+            final float height = Float.parseFloat(input2.nextLine());
+            if (width > 0 && height > 0) {
+                // Amounts are valid if positive
+                final float length = checkBoardLength(width, height);
+                System.out.println("The"
+                                 + "wood should be " + length
+                                 + " inch(es) long."
+                );
             } else {
-                final float boardWidthFloat =
-                    Float.parseFloat(boardWidthString);
-                final float boardHeightFloat =
-                    Float.parseFloat(boardHeightString);
-                if (boardWidthFloat < 0 || boardHeightFloat < 0) {
-                    System.out.println(invalidInput);
-                } else {
-                    // process
-                    final float boardLength = calculateBoardFoot(
-                        float boardWidthFloat, float boardHeightFloat
-                    );
-                    // output
-                    System.out.println(
-                        "The wood should be " + boardLength
-                        + " inch(es) long."
-                    );
-                }
+                // Input is invalid
+                Integer.parseInt(null);
             }
-        } catch (NumberFormatException ex) {
-            System.out.println(invalidInput);
+        } catch (NumberFormatException nfe) {
+            // Input is invalid
+            System.out.println("Invalid input.");
         }
+
+        // Close scanners
+        input.close();
+        input2.close();
+
+        // Show the program as done
         System.out.println("\nDone.");
     }
 }
-
