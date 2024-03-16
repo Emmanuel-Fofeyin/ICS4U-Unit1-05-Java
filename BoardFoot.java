@@ -1,7 +1,5 @@
 /*
 * This program checks how long wood needs to be one board foot long
-* will then calculate the length, so that the result
-* is exactly 1 board foot and returns that value.
 *
 * @author  Emmanuel.FN
 * @version 1.0
