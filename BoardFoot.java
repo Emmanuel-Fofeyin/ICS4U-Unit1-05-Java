@@ -62,7 +62,7 @@ final class BoardFoot {
             if (width > 0 && height > 0) {
                 // Amounts are valid if positive
                 final float length = checkBoardLength(width, height);
-                System.out.println("The"
+                System.out.println("The "
                                  + "wood should be " + length
                                  + " inch(es) long."
                 );
